@@ -36,4 +36,42 @@ module.exports = {
         //congrats
         res.status(200).send(req.session.user)
     },
+    login: async (req, res) => {
+        /*
+        todo get username and password from req.body
+        todo see if the user exists. If they don't, reject the request
+        todo compare the password and hash.  if it doesn't match reject the request
+        todo put the user on session
+        todo send confirmation
+        */
+
+        const db = req.app.get('db')
+
+        //destructure username and password from body
+        const { username, password } = req.body
+
+        //check if the user exist
+        const [existingUser] = await db.check_user([username])
+
+        //If that user does not exist reject them
+        if (!existingUser) {
+            return res.status(404).send('User does not exist')
+        }
+
+        //compare password and hash
+        const isAuthenticated = bcrypt.compareSync(password, existingUser.hash)
+
+        //If there is a mismatch, reject the request
+        if (!isAuthenticated) {
+            return res.status(403).send('Incorrect username or password')
+        }
+
+        delete existingUser.hash
+
+        //put user on the session
+        req.session.user = existingUser
+
+        //send confirmation
+        res.status(200).send(req.session.user)
+    },
 }

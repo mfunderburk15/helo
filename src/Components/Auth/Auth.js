@@ -16,6 +16,14 @@ class Auth extends Component {
         })
     }
 
+    handleLogin = () => {
+        axios.post('/auth/login', this.state)
+            .then((res) => {
+                this.props.loginUser(res.data)
+                this.props.history.push('/dashboard')
+            })
+    }
+
     handleRegister = () => {
         const { username, password } = this.state
         axios
@@ -47,8 +55,8 @@ class Auth extends Component {
                     </div>
                 </section>
                 <section>
-                    <button>Login</button>
-                    <button onClick={() => { this.handleRegister() }}>Register</button>
+                    <button onClick={this.handleLogin}>Login</button>
+                    <button onClick={this.handleRegister}>Register</button>
                 </section>
             </section>
         )
