@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 class Auth extends Component {
     constructor() {
@@ -13,6 +14,19 @@ class Auth extends Component {
         this.setState({
             [e.target.name]: e.target.value,
         })
+    }
+
+    handleRegister = () => {
+        const { username, password } = this.state
+        axios
+            .post('/auth/register', { username, password })
+            .then((res) => {
+                this.props.loginUser(res.data)
+                this.props.history.push('/dashboard')
+            })
+            .catch((err) => {
+                alert(err.message)
+            })
     }
 
     render() {
@@ -34,7 +48,7 @@ class Auth extends Component {
                 </section>
                 <section>
                     <button>Login</button>
-                    <button>Register</button>
+                    <button onClick={() => { this.handleRegister() }}>Register</button>
                 </section>
             </section>
         )

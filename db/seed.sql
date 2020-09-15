@@ -15,3 +15,6 @@ create table if not exists posts (
     content TEXT,
     author_id INT REFERENCES users(id)
 );
+
+ALTER TABLE users
+ALTER COLUMN hash TYPE TEXT;

@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs')
 
 module.exports = {
     register: async (req, res) => {
+
         /*
             TODO get username, password from req.body
             TODO check if the user exists; and if they do, reject the request
@@ -12,7 +13,6 @@ module.exports = {
         */
 
         const db = req.app.get('db')
-
         //destructuring values from req.body
         const { username, password } = req.body
 
