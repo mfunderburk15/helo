@@ -21,7 +21,7 @@ app.use(
 app.post('/auth/register', ctrl.register)
 app.post('/auth/login', ctrl.login)
 
-app.get('/api/posts', ctrl.getPosts)
+app.get('/api/posts/:user_id', ctrl.getPosts)
 
 massive({
     connectionString: CONNECTION_STRING,

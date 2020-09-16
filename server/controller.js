@@ -74,7 +74,28 @@ module.exports = {
         //send confirmation
         res.status(200).send(req.session.user)
     },
-    getPosts: (req, res) => {
+    getPosts: async (req, res) => {
 
+        const db = req.app.get('db')
+
+        const { user_id } = req.params
+        const { search, user_posts } = req.query
+
+        const posts = await db.get_posts()
+        console.log(posts)
+        const lowerSearch = search.toLowerCase()
+
+        if (user_posts === 'true' && lowerSearch) {
+            const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(lowerSearch))
+            return res.status(200).send(filteredPosts)
+        } else if (user_posts === 'false' && !lowerSearch) {
+            const filteredPosts = posts.filter(post => post.author_id != user_id)
+            return res.status(200).send(filteredPosts)
+        } else if (user_posts === 'false' && lowerSearch) {
+            const filteredPosts = posts.filter(post => post.author_id != user_id && post.title.toLowerCase().includes(lowerSearch))
+            return res.status(200).send(filteredPosts)
+        } else {
+            return res.status(200).send(posts)
+        }
     }
 }
