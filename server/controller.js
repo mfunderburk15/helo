@@ -74,4 +74,7 @@ module.exports = {
         //send confirmation
         res.status(200).send(req.session.user)
     },
+    getPosts: (req, res) => {
+
+    }
 }
