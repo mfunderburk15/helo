@@ -102,4 +102,13 @@ module.exports = {
       return res.status(200).send(posts);
     }
   },
+  getPostById: async (req, res) => {
+    const db = req.app.get("db");
+
+    const { id } = req.params;
+
+    const post = await db.get_post_by_id([id]);
+
+    res.status(200).send(post);
+  },
 };

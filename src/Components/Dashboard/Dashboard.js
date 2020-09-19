@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -57,14 +58,18 @@ class Dashboard extends Component {
 
   render() {
     const mapPosts = this.state.posts.map((e) => {
+      console.log(e.id);
       return (
-        <div key={e.id}>
-          <div>{e.title}</div>
-          <div>{e.username}</div>
-          <div>{e.profile_pic}</div>
-        </div>
+        <Link to={`/post/${e.id}`} key={e.id}>
+          <div>
+            <div>{e.title}</div>
+            <div>{e.username}</div>
+            <div>{e.profile_pic}</div>
+          </div>
+        </Link>
       );
     });
+
     return (
       <div>
         <section>
