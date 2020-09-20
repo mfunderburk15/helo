@@ -23,12 +23,13 @@ class Dashboard extends Component {
 
     if (myPosts && !search) {
       url += "?user_posts=true&search=";
-    } else if (myPosts === false && search) {
+    } else if (!myPosts && search) {
       url += `?user_posts=false&search=${search}`;
     } else if (myPosts && search) {
       url += `?user_posts=true&search=${search}`;
+    } else if (!myPosts && !search) {
+      url += "?user_posts=false&search=";
     }
-    console.log(search);
     console.log(url);
     axios.get(url).then((res) => {
       console.log(res.data);

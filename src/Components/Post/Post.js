@@ -20,6 +20,12 @@ class Post extends Component {
     });
   }
 
+  delete = () => {
+    axios.delete(`/api/post/${this.props.match.params.postid}`).then((res) => {
+      this.props.history.push("/dashboard");
+    });
+  };
+
   render() {
     console.log(this.state);
     return (
@@ -34,6 +40,9 @@ class Post extends Component {
         <div>
           <img src={this.state.img} />
           <p>{this.state.content}</p>
+        </div>
+        <div>
+          <button onClick={this.delete}>Delete</button>
         </div>
       </section>
     );

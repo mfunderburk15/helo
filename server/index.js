@@ -21,6 +21,8 @@ app.post("/auth/login", ctrl.login);
 
 app.get("/api/posts/:user_id", ctrl.getPosts);
 app.get("/api/post/:id", ctrl.getPostById);
+app.post("/api/posts/:user_id", ctrl.writePost);
+app.delete("/api/post/:id", ctrl.deletePost);
 
 massive({
   connectionString: CONNECTION_STRING,
