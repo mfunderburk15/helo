@@ -40,9 +40,15 @@ class Auth extends Component {
 
   render() {
     return (
-      <section>
-        <section>
-          <div>
+      <section className="Auth">
+        <section className="login-container">
+          <img
+            src="https://raw.githubusercontent.com/DevMountain/simulation-3/master/assets/helo_logo.png"
+            alt="logo"
+            className="logo-img"
+          />
+          <h1 className="logo-title">Helo</h1>
+          <div className="login-input-box">
             <p>Username:</p>
             <input
               name="username"
@@ -51,19 +57,24 @@ class Auth extends Component {
               }}
             />
           </div>
-          <div>
+          <div className="login-input-box">
             <p>Password:</p>
             <input
+              type="password"
               name="password"
               onChange={(e) => {
                 this.handleInput(e);
               }}
             />
           </div>
-        </section>
-        <section>
-          <button onClick={this.handleLogin}>Login</button>
-          <button onClick={this.handleRegister}>Register</button>
+          <div className="buttons">
+            <button className="button" onClick={this.handleLogin}>
+              Login
+            </button>
+            <button className="button" onClick={this.handleRegister}>
+              Register
+            </button>
+          </div>
         </section>
       </section>
     );

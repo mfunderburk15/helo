@@ -24,18 +24,16 @@ class Nav extends Component {
 
   render() {
     return (
-      <section>
-        <div>
-          <img src={this.props.proPic} />
+      <section className="Nav">
+        <div className="profile-container">
+          <img className="profile-pic" src={this.props.proPic} />
           <p>{this.props.username}</p>
         </div>
-        <div>
-          <Link to="/dashboard">Home</Link>
-          <Link to="/new">New Post</Link>
-          <Link to="/" onClick={this.logout}>
-            Logout
-          </Link>
+        <div className="nav-icons">
+          <Link className="nav-img-home" to="/dashboard" />
+          <Link className="nav-img-post" to="/new" />
         </div>
+        <Link className="nav-img-logout" to="/" onClick={this.logout} />
       </section>
     );
   }

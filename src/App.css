@@ -1,0 +1,202 @@
+@font-face {
+  font-family: fonts;
+  src: "./fonts";
+}
+*,
+::after,
+::before {
+  box-sizing: inherit;
+}
+.App {
+  font-family: fonts, "Courier New", Courier, monospace;
+  background-color: #f2f2f2;
+  min-width: 100%;
+  min-height: 100vh;
+}
+.Auth {
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(
+    99deg,
+    #ff70a6,
+    #ff9770 40%,
+    #ffd670 73%,
+    #e9ff70
+  );
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+.login-container {
+  border-radius: 8px;
+  box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25),
+    0 10px 10px 0 rgba(0, 0, 0, 0.26);
+  background-image: linear-gradient(97deg, #ff7a6e, #ffd670);
+  width: 35vw;
+  height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+}
+.logo-img {
+  width: 114px;
+  height: 114px;
+}
+.logo-title {
+  font-size: 80px;
+  font-weight: 700;
+}
+.login-input-box {
+  display: flex;
+  justify-content: space-between;
+  width: 55%;
+}
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 55%;
+}
+.button {
+  border-radius: 1px;
+  background-image: radial-gradient(circle at 50% -46%, #737373, #403d39);
+  padding: 10px 20px;
+  color: #ffffff;
+  border: none;
+}
+
+.Nav {
+  width: 100px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 20px;
+  color: #ffffff;
+  background-image: linear-gradient(0deg, #ff7abe, #ff9770);
+  box-shadow: 10px 0 20px 0 rgba(0, 0, 0, 0.1), 5px 0 5px rgba(0, 0, 0, 0.2);
+}
+.Nav > div {
+  margin: 0 0 45px;
+}
+.profile-container {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.profile-pic {
+  width: 70px;
+  height: 70px;
+  background-color: #ffffff;
+  background-position: 50%;
+  background-size: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #333333;
+}
+.nav-icons {
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-img-home {
+  background-image: url("https://raw.githubusercontent.com/DevMountain/simulation-3/master/assets/home_logo.png");
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+}
+.nav-img-post {
+  background-image: url("https://raw.githubusercontent.com/DevMountain/simulation-3/master/assets/new_logo.png");
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+}
+.nav-img-logout {
+  background-image: url("https://raw.githubusercontent.com/DevMountain/simulation-3/master/assets/shut_down.png");
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: 20px;
+  margin-bottom: 20px;
+  left: 30px;
+}
+
+.Dashboard {
+  width: 70%;
+  margin: 0 auto;
+}
+.content-box {
+  border-radius: 2px;
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 0 0 10px 0;
+}
+.filter,
+.search-box {
+  display: flex;
+}
+.filter {
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+.search-div {
+  display: flex;
+  width: 75%;
+}
+.search-bar {
+  height: 25px;
+  width: 90%;
+}
+.search-box {
+  height: 26px;
+  width: 26px;
+  background-color: orange;
+  border-radius: 2px;
+  padding: 2px;
+}
+.button-reset {
+  border-radius: 1px;
+  background-image: radial-gradient(circle at 50% -46%, #737373, #403d39);
+  padding: 5px 15px;
+  color: #ffffff;
+  border: none;
+}
+.checkbox-div {
+  display: flex;
+  justify-content: space-around;
+}
+.post-box {
+  border-radius: 2px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+.post {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+.post > h3 {
+  font-size: 30px;
+  text-decoration: none;
+  color: #333333;
+  font-weight: bold;
+}
+.author-box {
+  display: flex;
+  justify-content: flex-end;
+  width: 30%;
+}

@@ -57,9 +57,9 @@ class Dashboard extends Component {
   render() {
     const mapPosts = this.state.posts.map((e) => {
       return (
-        <Link to={`/post/${e.id}`} key={e.id}>
-          <div>
-            <div>{e.title}</div>
+        <Link className="post" to={`/post/${e.id}`} key={e.id}>
+          <h3>{e.title}</h3>
+          <div className="author-box">
             <div>{e.username}</div>
             <div>{e.profile_pic}</div>
           </div>
@@ -68,20 +68,27 @@ class Dashboard extends Component {
     });
 
     return (
-      <div>
-        <section>
-          <div>
+      <section className="Dashboard">
+        <div className="content-box filter">
+          <div className="search-div">
             <input
+              className="search-bar"
               name="search"
               placeholder="Search by Title"
               onChange={(e) => {
                 this.handleChange(e);
               }}
             />
-            <button onClick={this.getPosts}>Search</button>
-            <button onClick={this.reset}>Reset</button>
+            <img
+              src="https://raw.githubusercontent.com/DevMountain/simulation-3/master/assets/search_logo.png"
+              className="search-box"
+              onClick={this.getPosts}
+            />
+            <button className="button-reset" onClick={this.reset}>
+              Reset
+            </button>
           </div>
-          <div>
+          <div className="checkbox-div">
             <p>My Posts</p>
             <input
               checked={this.state.myPosts}
@@ -91,9 +98,9 @@ class Dashboard extends Component {
               }
             />
           </div>
-        </section>
-        <section>{mapPosts}</section>
-      </div>
+        </div>
+        <section className="post-box">{mapPosts}</section>
+      </section>
     );
   }
 }

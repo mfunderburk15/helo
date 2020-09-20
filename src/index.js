@@ -1,10 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { HashRouter } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import * as serviceWorker from './serviceWorker';
-import store from './ducks/store';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { HashRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import * as serviceWorker from "./serviceWorker";
+import store from "./ducks/store";
+import "./reset.css";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -12,7 +13,7 @@ ReactDOM.render(
       <App />
     </HashRouter>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
