@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const session = require("express-session");
 
 module.exports = {
   register: async (req, res) => {
@@ -35,6 +36,7 @@ module.exports = {
     //congrats
     res.status(200).send(req.session.user);
   },
+
   login: async (req, res) => {
     /*
         todo get username and password from req.body
@@ -73,10 +75,24 @@ module.exports = {
     //send confirmation
     res.status(200).send(req.session.user);
   },
+
+  logout: async (req, res) => {
+    req.session.destroy();
+    res.sendStatus(200);
+  },
+
+  me: async (req, res) => {
+    const db = req.app.get("db");
+    const { user_id } = req.session;
+    const { username, profile_pic } = req.session;
+    const user = await db.me(user_id, username, profile_pic);
+    res.status(200).send(req.session.user);
+  },
+
   getPosts: async (req, res) => {
     const db = req.app.get("db");
 
-    const { user_id } = req.params;
+    const { id } = req.session.user;
     const { search, user_posts } = req.query;
 
     const posts = await db.get_posts();
@@ -88,20 +104,20 @@ module.exports = {
       );
       return res.status(200).send(filteredPosts);
     } else if (user_posts === "false" && !search) {
-      const filteredPosts = posts.filter((post) => post.author_id != user_id);
+      const filteredPosts = posts.filter((post) => post.author_id != id);
       return res.status(200).send(filteredPosts);
     } else if (user_posts === "false" && search) {
       const lowerSearch = search.toLowerCase();
       const filteredPosts = posts.filter(
         (post) =>
-          post.author_id != user_id &&
-          post.title.toLowerCase().includes(lowerSearch)
+          post.author_id != id && post.title.toLowerCase().includes(lowerSearch)
       );
       return res.status(200).send(filteredPosts);
     } else {
       return res.status(200).send(posts);
     }
   },
+
   getPostById: async (req, res) => {
     const db = req.app.get("db");
 
@@ -111,6 +127,7 @@ module.exports = {
 
     res.status(200).send(post);
   },
+
   writePost: async (req, res) => {
     const db = req.app.get("db");
     const { id } = req.session.user;
@@ -119,6 +136,7 @@ module.exports = {
     const posts = await db.get_posts();
     res.status(200).send(posts);
   },
+
   deletePost: async (req, res) => {
     const db = req.app.get("db");
     const { id } = req.params;

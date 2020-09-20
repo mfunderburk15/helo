@@ -20,7 +20,7 @@ class Form extends Component {
 
   post = () => {
     axios
-      .post(`/api/posts/${this.props.userId}`, this.state)
+      .post("/api/posts/", this.state)
       .then((res) => this.props.history.push("/dashboard"));
   };
 

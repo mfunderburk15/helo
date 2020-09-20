@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -19,7 +18,7 @@ class Dashboard extends Component {
 
   getPosts = () => {
     let { search, myPosts } = this.state;
-    let url = `/api/posts/${this.props.userId}`;
+    let url = "/api/posts/";
 
     if (myPosts && !search) {
       url += "?user_posts=true&search=";
@@ -30,9 +29,7 @@ class Dashboard extends Component {
     } else if (!myPosts && !search) {
       url += "?user_posts=false&search=";
     }
-    console.log(url);
     axios.get(url).then((res) => {
-      console.log(res.data);
       this.setState({
         posts: res.data,
       });
@@ -47,7 +44,7 @@ class Dashboard extends Component {
 
   reset = () => {
     let { myPosts } = this.state;
-    let url = `/api/posts/${this.props.userId}`;
+    let url = "/api/posts/";
     if (myPosts) {
       url += "?user_posts=true&search=";
     }
@@ -59,7 +56,6 @@ class Dashboard extends Component {
 
   render() {
     const mapPosts = this.state.posts.map((e) => {
-      console.log(e.id);
       return (
         <Link to={`/post/${e.id}`} key={e.id}>
           <div>
@@ -102,10 +98,4 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    userId: state.userId,
-  };
-}
-
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

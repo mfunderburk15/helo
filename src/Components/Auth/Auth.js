@@ -1,73 +1,73 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import { connect } from 'react-redux'
-import { loginUser } from './../../ducks/reducer'
+import React, { Component } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
+import { updateUser } from "./../../ducks/reducer";
 
 class Auth extends Component {
-    constructor() {
-        super()
-        this.state = {
-            username: '',
-            password: ''
-        }
-    }
+  constructor() {
+    super();
+    this.state = {
+      username: "",
+      password: "",
+    };
+  }
 
-    handleInput = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value,
-        })
-    }
+  handleInput = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    handleLogin = () => {
-        const { username, password } = this.state
-        axios
-            .post('/auth/login', { username, password })
-            .then((res) => {
-                const { username, proPic, id } = res.data
-                console.log(res.data)
-                this.props.loginUser(username, proPic, id)
-                this.props.history.push('/dashboard')
-            })
-    }
+  handleLogin = () => {
+    axios.post("/auth/login", this.state).then((res) => {
+      this.props.updateUser(res.data);
+      this.props.history.push("/dashboard");
+    });
+  };
 
-    handleRegister = () => {
-        const { username, password } = this.state
-        axios
-            .post('/auth/register', { username, password })
-            .then((res) => {
-                const { username, proPic, userId } = res.data
-                this.props.loginUser(username, proPic, userId)
-                this.props.history.push('/dashboard')
-            })
-            .catch((err) => {
-                alert(err.message)
-            })
-    }
+  handleRegister = () => {
+    const { username, password } = this.state;
+    axios
+      .post("/auth/register", { username, password })
+      .then((res) => {
+        this.props.updateUSer(res.data);
+        this.props.history.push("/dashboard");
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
 
-    render() {
-        return (
-            <section>
-                <section>
-                    <div>
-                        <p>Username:</p>
-                        <input name="username" onChange={(e) => {
-                            this.handleInput(e)
-                        }} />
-                    </div>
-                    <div>
-                        <p>Password:</p>
-                        <input name="password" onChange={(e) => {
-                            this.handleInput(e)
-                        }} />
-                    </div>
-                </section>
-                <section>
-                    <button onClick={this.handleLogin}>Login</button>
-                    <button onClick={this.handleRegister}>Register</button>
-                </section>
-            </section>
-        )
-    }
+  render() {
+    return (
+      <section>
+        <section>
+          <div>
+            <p>Username:</p>
+            <input
+              name="username"
+              onChange={(e) => {
+                this.handleInput(e);
+              }}
+            />
+          </div>
+          <div>
+            <p>Password:</p>
+            <input
+              name="password"
+              onChange={(e) => {
+                this.handleInput(e);
+              }}
+            />
+          </div>
+        </section>
+        <section>
+          <button onClick={this.handleLogin}>Login</button>
+          <button onClick={this.handleRegister}>Register</button>
+        </section>
+      </section>
+    );
+  }
 }
 
-export default connect(null, { loginUser })(Auth)
+export default connect(null, { updateUser })(Auth);
