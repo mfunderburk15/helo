@@ -28,8 +28,10 @@ module.exports = {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
 
+    const profile_pic = `https://robohash.org/${username}`;
+
     //create the user in the db
-    const [newUser] = await db.register_user([username, hash]);
+    const [newUser] = await db.register_user([username, hash, profile_pic]);
 
     req.session.user = newUser;
 

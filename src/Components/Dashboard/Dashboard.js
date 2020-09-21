@@ -60,8 +60,8 @@ class Dashboard extends Component {
         <Link className="post" to={`/post/${e.id}`} key={e.id}>
           <h3>{e.title}</h3>
           <div className="author-box">
-            <div>{e.username}</div>
-            <div>{e.profile_pic}</div>
+            <div>by {e.username}</div>
+            <img src={e.profile_pic} />
           </div>
         </Link>
       );

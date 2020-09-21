@@ -26,7 +26,7 @@ class Nav extends Component {
     return (
       <section className="Nav">
         <div className="profile-container">
-          <img className="profile-pic" src={this.props.proPic} />
+          <img className="profile-pic" src={this.props.profile_pic} />
           <p>{this.props.username}</p>
         </div>
         <div className="nav-icons">

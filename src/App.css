@@ -1,17 +1,9 @@
-@font-face {
-  font-family: fonts;
-  src: "./fonts";
-}
-*,
-::after,
-::before {
-  box-sizing: inherit;
-}
 .App {
-  font-family: fonts, "Courier New", Courier, monospace;
+  font-family: "Open Sans", "Courier New", Courier, monospace;
   background-color: #f2f2f2;
   min-width: 100%;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 .Auth {
   width: 100vw;
@@ -131,7 +123,7 @@
 }
 
 .Dashboard {
-  width: 70%;
+  width: 62%;
   margin: 0 auto;
 }
 .content-box {
@@ -139,6 +131,8 @@
   background-color: #ffffff;
   padding: 20px;
   margin: 0 0 10px 0;
+  position: relative;
+  top: 25px;
 }
 .filter,
 .search-box {
@@ -180,6 +174,8 @@
   background-color: #fff;
   padding: 20px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  top: 25px;
 }
 .post {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
@@ -188,15 +184,28 @@
   justify-content: space-between;
   align-items: center;
   margin: 10px 0;
+  text-decoration: none;
 }
 .post > h3 {
   font-size: 30px;
-  text-decoration: none;
-  color: #333333;
-  font-weight: bold;
+  color: #000000;
 }
-.author-box {
+.post .author-box {
   display: flex;
   justify-content: flex-end;
+  align-items: flex-end;
   width: 30%;
+  text-decoration: none;
+  color: #000000;
+}
+
+.author-box > p {
+  font-size: 16px;
+}
+.author-box > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  margin: 0 5px;
 }

@@ -1,6 +1,6 @@
 const initialState = {
   username: "",
-  proPic: "",
+  profile_pic: "",
 };
 
 const UPDATE_USER = "UPDATE_USER";
@@ -12,7 +12,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         username: action.payload.username,
-        proPic: action.payload.proPic,
+        profile_pic: action.payload.profile_pic,
       };
     case LOGOUT:
       return initialState;
